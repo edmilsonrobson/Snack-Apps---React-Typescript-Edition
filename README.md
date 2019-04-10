@@ -1,4 +1,4 @@
-# Toy Apps - React + Typescript Edition
+# Snack Apps - React + Typescript Edition
 
 ## Instalation
 1. `npm install`
