@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from "styled-components";
 
 import KeyEventHandler from "./containers/KeyEventHandler";
+import Container from "../commons/ui/Container/Container";
 
 interface IState {
   pressedKeys: string[],
@@ -11,10 +12,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  background: url(https://images.unsplash.com/photo-1457523054379-8d03ab9fc2aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
 `;
 
 const Title = styled.h2`
@@ -64,18 +61,23 @@ class DrumKit extends React.Component<any, IState> {
 
   render() {
     const { pressedKeys } = this.state;
-      return (
-      <Wrapper>
-        <KeyEventHandler onKeyPress={this.handleKeyPress} keysToListen={this.keysToListen}/>
-        <div>
-          <Title>Drumkit</Title>
-          { !!pressedKeys.length && <Text>{pressedKeys[pressedKeys.length-1]}</Text> }
 
-          <FooterText>
-            Inspired by Wes Bos's <Link href="https://javascript30.com/" target="_blank">30 Day Vanilla JS Course/Challenge</Link>
-          </FooterText>
-        </div>
-      </Wrapper>
+    return (
+      <Container backgroundImage="https://images.unsplash.com/photo-1457523054379-8d03ab9fc2aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80">
+        <Wrapper>
+          <KeyEventHandler onKeyPress={this.handleKeyPress} keysToListen={this.keysToListen} />
+          <div>
+            <Title>Drumkit</Title>
+            <audio loop={true} autoPlay={true} src={process.env.PUBLIC_URL + '/sounds/clap.wav'}></audio>
+
+            {!!pressedKeys.length && <Text>{pressedKeys[pressedKeys.length - 1]}</Text>}
+
+            <FooterText>
+              Inspired by Wes Bos's <Link href="https://javascript30.com/" target="_blank">30 Day Vanilla JS Course/Challenge</Link>
+            </FooterText>
+          </div>
+        </Wrapper>
+      </Container>
     );
   }
 }
